@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.mainlayout);
         text=(TextView) findViewById(R.id.output);
         editText=(EditText) findViewById(R.id.input);
-        s=editText.getText().toString();
         Button changetext=(Button) findViewById(R.id.changetext);
         changetext.setOnClickListener(this);
     }
@@ -43,7 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
+                        s=editText.getText().toString();
+                        Message message=new Message();
+                        message.what=UPADTE_TEXT;
+                        handler.sendMessage(message);
                     }
                 }).start();
                 break;
